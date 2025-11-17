@@ -631,8 +631,13 @@ class Bomb {
 	method shouldBlowUp() = timer <= 0
 
 	method checkCollide() {
-		if (position == player.position()) self.despawn()
-  }
+		if (position == player.position()) self.defuse()
+	}
+
+	method defuse(){
+		game.sound("sfx_defuse.wav").play()
+		self.despawn()
+	}
 
 }
 

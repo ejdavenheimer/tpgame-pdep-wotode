@@ -1,5 +1,6 @@
 import models_hud.*
 import stage_home.stage_home
+import stage_0.stage_0
 import stage_2.stage_2
 import stage_3.stage_3
 import models_towers.*
@@ -38,6 +39,7 @@ object tdGame {
 		keyboard.r().onPressDo({ self.swapStages(stage_home) })
 		keyboard.t().onPressDo({ self.swapStages(stage_2) })
 		keyboard.y().onPressDo({ self.swapStages(stage_3) })
+		keyboard.u().onPressDo({ self.swapStages(stage_0) })
 		player.controlSetup()
 	}
 
@@ -564,6 +566,11 @@ class Round {
 	method end() {
 		enemySpawnTick.stop()
 		tdGame.completeRound()
+		self.clearBombs()
+	}
+
+	method clearBombs() {
+		bombList.forEach({b => b.despawn()})
 	}
 	
 	method discountEnemy(enemy) {
@@ -640,8 +647,6 @@ class Bomb {
 	}
 
 }
-
-
 
 class Queue {
 	const list = []

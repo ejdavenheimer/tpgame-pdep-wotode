@@ -4,7 +4,7 @@ import models_enemies.*
 const stage_0 = new Stage(
   path = path,
   resources = 1000,
-  rounds = new Queue(list = [round_0, round_1, round_2, round_3, round_4]),
+  rounds = new Queue(list = [round_3, round_0, round_1, round_2 , round_4]),
   optimized_path_image = "optimized_stage_0.png"
 )
 

@@ -4,7 +4,7 @@ import models_enemies.*
 const stage_0 = new Stage(
   path = path,
   resources = 1000,
-  rounds = new Queue(list = [round_00, round_0, round_1, round_2, round_3]),
+  rounds = new Queue(list = [round_3, round_0, round_1, round_2 , round_4]),
   optimized_path_image = "optimized_stage_0.png"
 )
 
@@ -31,19 +31,11 @@ const path = [
 
 const a = new MutablePosition()
 
-const round_00 = new Round(
-  enemiesQueue = new Queue(
-    list = [new ExplosiveEnemy(), new ExplosiveEnemy(), new ExplosiveEnemy(), new ExplosiveEnemy(), new ExplosiveEnemy(), new BasicEnemy(hp = 3)]
-  ),
-  resourcesReward = 100
-)
 
 const round_0 = new Round(
   enemiesQueue = new Queue(
     list = [
-      new ExplosiveEnemy(),
-      new ExplosiveEnemy(),
-      new BasicEnemy(hp = 2),
+      new BasicEnemy(hp = 1),
       new BasicEnemy(hp = 2),
       new BasicEnemy(),
       new BasicEnemy(),
@@ -56,10 +48,8 @@ const round_0 = new Round(
 const round_1 = new Round(
   enemiesQueue = new Queue(
     list = [
-      new ExplosiveEnemy(),
-      new ExplosiveEnemy(),
-      new ExplosiveEnemy(),
-      new ExplosiveEnemy(),
+      new BasicEnemy(),
+      new BasicEnemy(),
       new BasicEnemy(),
       new BasicEnemy(),
       new ArmoredEnemy()
@@ -71,20 +61,29 @@ const round_1 = new Round(
 const round_2 = new Round(
   enemiesQueue = new Queue(
     list = [
+      new ArmoredEnemy(),
+      new BasicEnemy(),
+      new BasicEnemy(),
       new BasicEnemy(),
       new ArmoredEnemy(),
       new BasicEnemy(),
       new ArmoredEnemy(),
-      new BasicEnemy(),
+      new BasicEnemy(), 
       new ArmoredEnemy(),
-      new BasicEnemy(),
-      new ArmoredEnemy()
+      new ExplosiveEnemy()
     ]
   ),
   resourcesReward = 200
 )
 
 const round_3 = new Round(
+  enemiesQueue = new Queue(
+    list = [new ExplosiveEnemy(), new ExplosiveEnemy(), new ExplosiveEnemy(), new ExplosiveEnemy(), new ExplosiveEnemy(), new BasicEnemy(hp = 3)]
+  ),
+  resourcesReward = 100
+)
+
+const round_4 = new Round(
   enemiesQueue = new Queue(
     list = [
       new BasicEnemy(),

@@ -37,18 +37,31 @@ WoToDe es un juego de tipo tower defense, él cual consiste en defender nuestro 
 >
 >> **Fase de construcción**: puede colocar tantas torres según la cantidad de monedas que disponga (puede ver el costo de cada torre en el menú lateral).
 >
->> **Fase de ejecución de ronda**: los enemigos avanzarán por el camino marcado con el objetivo de llegar al núcleo.
+>> **Fase de ejecución de ronda**: los enemigos avanzarán por el camino marcado con el objetivo de llegar al núcleo. Cuando los enemigos mueren, unas bombas aparecen y deben ser desactivadas yendo hasta su posición. 
 >
 >> **Fase fin de ronda**: cada vez que finalice una ronda, el jugador recibirá oro para poder seguir construyendo más torres.
 
+### Controles:
+
+| Tecla  | Acción |
+| ------------- |:-------------:|
+| W-A-S-D      | Movimientos del personaje     |
+| Q     |  Entrar en modo construccion de torres    |
+| 1     |  Cambiar vista a torre básica |
+| 2      |  Cambiar vista a torre ralentizante |
+| 3      |  Cambiar vista a torre perforante |
+| Espacio      | Costruir torre |
+| X      | Vender torre  |
+| E      | Iniciar o avanzar una ronda |
+| R      | Reiniciar el juego  |
+
 ### Tipos de enemigos
-<img src="./assets/enemy_basic_alive_0.png" alt="Imágen del enemigo básico I" title="Imagen del enemigo común I" width="20"> Enemigo común I: puede recibir daño de cualquier torre.
 
-<img src="./assets/enemy_basic_alive_1.png" alt="Imágen del enemigo básico II" title="Imagen del enemigo común II" width="20"> Enemigo común II: puede recibir daño de cualquier torre.
+<img src="./assets/enemy_basic_alive_1.png" alt="Imágen del enemigo básico II" title="Imagen del enemigo común I" width="20"> Enemigo común II: puede recibir daño de cualquier torre.
 
-<img src="./assets/enemy_basic_alive_2.png" alt="Imágen del enemigo básico III" title="Imagen del enemigo común III" width="20"> Enemigo común III: puede recibir daño de cualquier torre.
+<img src="./assets/enemy_basic_alive_2.png" alt="Imágen del enemigo básico III" title="Imagen del enemigo común II" width="20"> Enemigo común III: puede recibir daño de cualquier torre.
 
-<img src="./assets/enemy_basic_alive_3.png" alt="Imágen del enemigo básico IV" title="Imagen del enemigo común IV" width="20"> Enemigo común IV: puede recibir daño de cualquier torre.
+<img src="./assets/enemy_basic_alive_3.png" alt="Imágen del enemigo básico IV" title="Imagen del enemigo común III" width="20"> Enemigo común IV: puede recibir daño de cualquier torre.
 
 <img src="./assets/enemy_armored_alive.png" alt="Imágen del enemigo con armadura" title="Imagen del enemigo con armadura" width="20"> Enemigo con armadura: únicamente la torre perforante le puede hacer daño.
 
@@ -60,20 +73,6 @@ WoToDe es un juego de tipo tower defense, él cual consiste en defender nuestro 
 <img src="./assets/tower_slowing_idle.png" alt="Imágen de la torre ralentizante" title="Imágen de la torre ralentizante" width="20"> Torre ralentizante: ralentiza al enemigo atacado.
 
 <img src="./assets/tower_piercing_idle.png" alt="Imágen de la torre perforante" title="Imágen de la torre perforante" width="20"> Torre perforante: es la única que puede hacer daño a los enemigos con armadura.
-
-### Controles:
-
-| Tecla  | Acción |
-| ------------- |:-------------:|
-| W-A-S-D      | Movimientos del personaje     |
-| Q     |  Ver rango de las torres    |
-| 1     |  Cambiar vista a torre básica |
-| 2      |  Cambiar vista a torre ralentizante |
-| 3      |  Cambiar vista a torre perforante |
-| Espacio      | Costruir torre |
-| X      | Vender torre  |
-| E      | Iniciar o avanzar una ronda |
-| R      | Reiniciar el juego  |
 
 ### Consultas 
 >> **¿Cómo construyo las torres?**

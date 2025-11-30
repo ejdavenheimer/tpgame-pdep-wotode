@@ -1,5 +1,6 @@
 import models_hud.*
 import stage_home.stage_home
+import stage_0.stage_0
 import stage_2.stage_2
 import stage_3.stage_3
 import models_towers.*
@@ -7,7 +8,6 @@ import models_towers.*
 const optimized_mode = true
 
 const stageList = [stage_2, stage_3]
-
 object tdGame {
 	var selectedStage = stage_home
 	var currentStage = selectedStage.clone()
@@ -22,6 +22,11 @@ object tdGame {
 		game.start()
 		player.refreshPrevisualizer()
 		self.displayBackground()
+		self.setupPlayZone()
+	}
+
+	method setupPlayZone(){
+
 	}
 
 	method displayBackground() {
@@ -34,6 +39,7 @@ object tdGame {
 		keyboard.r().onPressDo({ self.swapStages(stage_home) })
 		keyboard.t().onPressDo({ self.swapStages(stage_2) })
 		keyboard.y().onPressDo({ self.swapStages(stage_3) })
+		keyboard.u().onPressDo({ self.swapStages(stage_0) })
 		player.controlSetup()
 	}
 
@@ -107,6 +113,8 @@ object tdGame {
 
 	method checkTowersCollide() = currentStage.checkTowersCollide()
 
+	method checkBombsCollide() = currentStage.checkBombsCollide()
+
 	method isWin() = stageList.all({stage => stage.isWin()})
 
 	method winCheck() {
@@ -115,6 +123,14 @@ object tdGame {
 
 	method win(){
 		stage_home.setWinMode()
+	}
+
+	method spawnBomb(){
+		currentStage.spawnBomb()
+	}
+
+	method removeBomb(bomb){
+		currentStage.removeBomb(bomb)
 	}
 }
 
@@ -290,6 +306,7 @@ object player {
 	method movementActions(){
 		rangePrevisualizer.refreshPosition(position)
 		tdGame.checkTowersCollide()
+		tdGame.checkBombsCollide()
 	}
 
 	method moveUp() {
@@ -441,11 +458,52 @@ class Stage {
 		towers.forEach({tower => tower.checkCollide()})
 	}
 
+	method checkBombsCollide() {
+		currentRound.checkBombsCollide()
+	}
+
 	method markAsWin(){
 		status = "win"
 	}
 
 	method isWin() = status == "win"
+
+	method spawnBomb(){
+
+		currentRound.spawnBomb(self.availableBombZone())
+	}
+
+	method availableBombZone() = self.availableBombZones().anyOne()
+
+	method availableBombZones() = [
+		game.at(1,1),
+		game.at(7,7),
+		game.at(10,9),
+		game.at(4,4),
+		game.at(6,6),
+		game.at(3,1),
+		game.at(1,3),
+		game.at(12,12)
+
+	].asSet().difference(self.notBombZone())
+
+	method notBombZone() = self.roundBombsZones()
+
+
+	method roundBombsZones() {
+		return currentRound.bombZones()
+	}
+
+	method playZone() {
+		const list = []
+		(0..17).forEach({ x => (0..13).forEach({y => list.add(new Position(x = x, y=y))})})
+		return list.asSet()
+	}
+
+	method removeBomb(bomb){
+		currentRound.removeBomb(bomb)
+	}
+
 }
 
 class Road {
@@ -472,6 +530,7 @@ class Round {
 	const resourcesReward
 	const enemySpawnFrequency = 1500
 	var enemySpawnTick = game.tick(1500, { }, false)
+	const bombList = []
 	
 	method enemiesQueue() = enemiesQueue
 	method enemiesRemaining() = enemiesQueue.size() + enemiesInPlay.size()
@@ -486,6 +545,7 @@ class Round {
 	method clear() {
 		enemySpawnTick.stop()
 		enemiesInPlay.forEach({ enemy => enemy.despawn()})
+		bombList.forEach({bomb => bomb.despawn()})
 	}
 		
 	method start(path) {
@@ -506,6 +566,11 @@ class Round {
 	method end() {
 		enemySpawnTick.stop()
 		tdGame.completeRound()
+		self.clearBombs()
+	}
+
+	method clearBombs() {
+		bombList.forEach({b => b.despawn()})
 	}
 	
 	method discountEnemy(enemy) {
@@ -514,6 +579,72 @@ class Round {
 	}
 
 	method isComplete() = self.enemiesRemaining() == 0
+
+	method spawnBomb(position){
+		const bomb = new Bomb(position = position)
+		bomb.spawn()
+		self.addBomb(bomb)
+	}
+
+	method addBomb(bomb){
+		bombList.add(bomb)
+	}
+
+	method bombZones() = bombList.map({b => b.position()}).asSet()
+
+	method removeBomb(bomb) {
+		bombList.remove(bomb)
+	}
+
+	method checkBombsCollide() {
+		bombList.forEach({bomb => bomb.checkCollide()})
+	}
+}
+
+class Bomb {
+	var property position
+	var timer = 3
+	const countdownTick = game.tick(2000, {self.countdown()}, false)
+
+	method image() = "bomba.png"
+	method text() = timer.toString()
+	method textColor() = "FFFFFFFF"
+
+	method spawn(){
+		game.addVisual(self)
+		countdownTick.start()
+	}
+	method despawn(){
+		countdownTick.stop()
+		tdGame.removeBomb(self)
+		game.removeVisual(self)
+	}
+	method blowUp(){
+		self.doDamage(tdGame.currentStage())
+		self.despawn()
+	}
+
+	method doDamage(damageable){
+		damageable.receiveDamage(5)
+	}
+
+	method countdown(){
+		timer -= 1
+		if (self.shouldBlowUp()){
+			self.blowUp()
+		}
+	}
+
+	method shouldBlowUp() = timer <= 0
+
+	method checkCollide() {
+		if (position == player.position()) self.defuse()
+	}
+
+	method defuse(){
+		game.sound("sfx_defuse.wav").play()
+		self.despawn()
+	}
 
 }
 

@@ -8,8 +8,14 @@ UTN - Facultad Regional Buenos Aires - Materia Paradigmas de Programación
 - Porzolis Requena, Alexis Eduardo
 
 ## Introducción
+![Imagen de introducción del juego WoToDe](captura_introduccion.png "Intro de WoToDo")
+En el Parque de los Cerezos, los vecinos disfrutan de la hermosa decoración natural que brindan estos árboles, cubriendo el lugar con flores y hojas rosadas.
+Sin embargo, una fuerza oscura acecha el parque, avanzando lentamente y buscando arrasar con todo a su paso.
 
-WoToDe es un juego de tipo tower defense, él cual consiste en defender nuestro núcleo vital de los enemigos que buscan destruirlo, para ello podemos crear torres, con distintos efectos, para cubrir nuestra razón de existir.
+Para defenderlo, los vecinos están construyendo un sistema especial llamado WoToDe, un conjunto de torres diseñadas para enfrentar a los enemigos y proteger el corazón del parque.
+
+Las alertas comienzan a sonar, ya es momento de luchar.
+¿Te sumás a la defensa?
 
 ## Capturas
 *Pantalla principal*

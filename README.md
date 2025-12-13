@@ -14,8 +14,8 @@ Sin embargo, una fuerza oscura acecha el parque, avanzando lentamente y buscando
 
 Para defenderlo, los vecinos están construyendo un sistema especial llamado WoToDe, un conjunto de torres diseñadas para enfrentar a los enemigos y proteger el corazón del parque.
 
-Las alertas comienzan a sonar, ya es momento de luchar.
-¿Te sumás a la defensa?
+*¡Las alertas comienzan a sonar! Es mo...
+..mento de luchar... ¿Te sumás a la defensa?*
 
 ## Capturas
 *Pantalla principal*

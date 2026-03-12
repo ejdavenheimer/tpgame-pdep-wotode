@@ -1,6 +1,10 @@
 UTN - Facultad Regional Buenos Aires - Materia Paradigmas de Programación
 
-## Equipo de desarrollo:
+## Profesor:
+
+- Sanzo, Alfredo
+
+- ## Equipo de desarrollo:
 
 - Arellano, Ariel Iván
 - Davenheimer, Emerson Javier
